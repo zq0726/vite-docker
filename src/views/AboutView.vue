@@ -41,9 +41,12 @@ initData()
 
 <style scoped lang="scss">
 .title {
+  color: yellow;
   padding: 10px 2px;
   font-weight: bold;
   font-size: 1.2rem;
   text-align: center;
+  margin: 0;
+  display: flex;
 }
 </style>
