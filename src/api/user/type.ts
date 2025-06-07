@@ -1,10 +1,13 @@
 export interface UserInfo {
   id: number
   account: string
-  password: string
   username: string
   phone: string
   isActive: boolean
+  email?: string
+  role?: string
+  avatar?: string
+  createBy?: string
   createAt: string
   updateAt: string
 }

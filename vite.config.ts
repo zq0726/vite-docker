@@ -7,6 +7,9 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import UnoCSS from 'unocss/vite'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
+import path from 'node:path'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -14,6 +17,11 @@ export default defineConfig({
     vue(),
     vueJsx(),
     vueDevTools(),
+    UnoCSS(),
+    createSvgIconsPlugin({
+      iconDirs: [path.resolve(process.cwd(), 'src/assets/icons/svg')],
+      symbolId: 'icon-[dir]-[name]',
+    }),
     AutoImport({
       resolvers: [ElementPlusResolver()],
     }),
@@ -21,7 +29,7 @@ export default defineConfig({
       resolvers: [ElementPlusResolver()],
     }),
   ],
-  base: './',
+  base: '/',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
@@ -31,7 +39,7 @@ export default defineConfig({
     host: '0.0.0.0',
     proxy: {
       '/api': {
-        target: 'http://8.130.65.136:3000/api/',
+        target: 'http://localhost:3456',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },
